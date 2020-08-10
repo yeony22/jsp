@@ -9,23 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/notice-reg")
-public class NoticeReg extends HttpServlet {
+@WebServlet("/add2")
+public class Add2 extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
-		//request.setCharacterEncoding("UTF-8");
 		
-		PrintWriter out = response.getWriter();
-
-		String title = request.getParameter("title");		
-		String content = request.getParameter("content");
+		String[] num_ = request.getParameterValues("num");
 		
+		int result = 0;
 		
-		out.println(title);
-		out.println(content);	
+		for(int i=0; i <num_.length; i++) {
+			int num = Integer.parseInt(num_[i]);
+			result += num;
+		}
+		response.getWriter().printf("result : %d\n", result);
 	}
 }
